@@ -1,0 +1,4 @@
+replicaCount: 2
+image:
+  repository: myacr.azurecr.io/backend      #localhost:5000/backend
+  tag: latest

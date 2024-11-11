@@ -1,0 +1,5 @@
+replicaCount: 1
+image:
+  repository: myacr.azurecr.io/frontend        #localhost:5000/frontend
+  tag: latest
+
