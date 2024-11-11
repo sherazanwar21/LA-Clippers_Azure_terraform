@@ -41,6 +41,7 @@ jobs:
         helm upgrade --install my-release ./backend-chart \
           --set image.repository=${{ secrets.ACR_NAME }}.azurecr.io/backend \
           --set image.tag=latest \
+          --debug
 
     #Step 8: Deploy using Helm for frontend
     - name: Deploy to AKS using Helm
@@ -48,6 +49,7 @@ jobs:
         helm upgrade --install my-release ./frontend-chart \
           --set image.repository=${{ secrets.ACR_NAME }}.azurecr.io/frontend \
           --set image.tag=latest \
+          --debug
 
     # Step 9: Verify the deployment
     - name: Verify Deployment
