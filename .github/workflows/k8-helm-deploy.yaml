@@ -35,7 +35,7 @@ jobs:
     - name: Set up Helm
       uses: azure/setup-helm@v1
 
-    # Step 7: Deploy using Helm
+    # Step 7: Deploy using Helm for backend
     - name: Deploy to AKS using Helm
       run: |
         helm upgrade --install my-release ./backend-chart \
@@ -43,7 +43,15 @@ jobs:
           --set image.tag=latest \
           --namespace default
 
-    # Step 8: Verify the deployment
+    #Step 8: Deploy using Helm for frontend
+    - name: Deploy to AKS using Helm
+      run: |
+        helm upgrade --install my-release ./frontend-chart \
+          --set image.repository=${{ secrets.ACR_NAME }}.azurecr.io/frontend \
+          --set image.tag=latest \
+          --namespace default
+
+    # Step 9: Verify the deployment
     - name: Verify Deployment
       run: |
         kubectl get pods
